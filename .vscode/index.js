@@ -13,9 +13,10 @@ setInterval(() => {
     const pipe1_hg = Math.floor(Math.random()*20) + 20;
     const hole1_hg = Math.floor(Math.random()*20) + 20;
 
-    pipe1.style.height = `${pipe1_hg}%`;
+    pipe1.style.height = `${hole1_hg}%`;
+    pipe2.style.height = `${pipe2_hg}%`;
     pipe2.style.top = `${pipe1_hg + hole1_hg}%`;
-    pipe2.style.height = `${100 - (pipe1_hg + hole1_hg)}%`;
+
 }, 4000);
 
 let elem=document.getElementById("ufo");
