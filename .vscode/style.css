@@ -1,69 +1,101 @@
+/* GAME CONTAINER */
 #game{
-    background-image: url('https://opengameart.org/sites/default/files/bg_02_h.png');
-    height: 500px;
-    width: 900px;
-    background-size: cover;
-   background-position: bottom;
-    border: 8px outset purple;
-    overflow: hidden;
-    position: relative;
-    margin-left: 10%;
-    margin-top: 5%;
+  background-image: url('https://opengameart.org/sites/default/files/bg_02_h.png');
+  height: 500px;
+  width: 900px;
+  background-size: cover;
+  background-position: bottom;
+  border: 8px outset purple;
+  overflow: hidden;
+  position: relative;
+  margin-left: 10%;
+  margin-top: 5%;
 }
 
-body{
-    background-color: black;
+body{ background-color: black; }
+
+/* LASER PIPES */
+#pipe1, #pipe2{
+  position: absolute;
+  width: 18px;
+  border-radius: 12px;
+
+  background: linear-gradient(to right,
+    rgba(0,255,255,0.08),
+    rgba(0,255,255,1),
+    rgba(0,255,255,0.08)
+  );
+
+  box-shadow:
+    0 0 10px rgba(0,255,255,0.85),
+    0 0 28px rgba(0,255,255,0.55),
+    inset 0 0 10px rgba(255,255,255,0.25);
+
+  animation: move 3s linear infinite, laserPulse 0.9s infinite alternate;
 }
 
-#pipe1{
-    position: absolute;
-    width: 50px;
-    height: 50%;
-    transform: rotate(180deg);
-    background-image: url(pipe.png);
+#pipe1{ top: 0; height: 50%; }
+#pipe2{ bottom: 0; height: 20%; }
 
+#pipe1::after, #pipe2::after{
+  content: "";
+  position: absolute;
+  top: 0; bottom: 0;
+  left: 50%;
+  width: 3px;
+  transform: translateX(-50%);
+  border-radius: 3px;
+  background: rgba(255,255,255,0.85);
+  box-shadow: 0 0 10px rgba(255,255,255,0.7);
+  pointer-events: none;
 }
 
-#pipe2{
-    position: absolute;
-    width: 50px;
-    height: 20%;
-    top: 80%;
-    background-image: url(pipe.png);
-}
-.obs{
-    left: 95%;
-    animation: move 3s ease-in-out infinite;
-    background-repeat: no-repeat;
-    background-size: cover;
+.obs{ left: 100%; }
 
+@keyframes move{
+  0%{ left: 100%; }
+  100%{ left: -30px; }
 }
 
+@keyframes laserPulse{
+  from{
+    filter: brightness(0.9);
+    box-shadow:
+      0 0 8px rgba(0,255,255,0.65),
+      0 0 22px rgba(0,255,255,0.45),
+      inset 0 0 8px rgba(255,255,255,0.18);
+  }
+  to{
+    filter: brightness(1.35);
+    box-shadow:
+      0 0 14px rgba(0,255,255,0.95),
+      0 0 40px rgba(0,255,255,0.75),
+      inset 0 0 12px rgba(255,255,255,0.30);
+  }
+}
+
+/* UFO */
 #ufo{
-    position: absolute;
-    top: 200px;
-    left: 90px;
+  position: absolute;
+  top: 200px;
+  left: 90px;
+  width: 50px;
+  height: 50px;
 }
 
 #ufo img{
-    height: 50px;
-    width: 50px;
+  width: 100%;
+  height: 100%;
+  display: block;
 }
 
+/* SCORE */
 #score{
-    font-family: fantasy;
-    color: white;
-    font-size: x-large;
-    font-weight: bolder;
-    margin-left: 2%;
-    margin-top: 2%;
+  font-family: fantasy;
+  color: white;
+  font-size: x-large;
+  font-weight: bolder;
+  margin-left: 2%;
+  margin-top: 2%;
 }
 
-@keyframes move {
-    0%{
-        left: 100%;
-    }
-    100%{
-        left: -7%;
-    }
-}
